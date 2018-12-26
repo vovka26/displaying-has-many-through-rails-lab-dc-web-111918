@@ -1,4 +1,14 @@
 class PatientsController < ApplicationController
-  has_many :doctors, through: :appointments
-  has_many :appointments
+  before_action :find_patient, only: [:show]
+  def index
+    @patients = Patient.all
+  end
+
+  def show
+  end
+
+  private
+  def find_patient
+    @patient = Patient.find(params[:id])
+  end
 end
